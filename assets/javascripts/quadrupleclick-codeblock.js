@@ -8,7 +8,7 @@
 
     // Default options
     var defaults = {
-        threshold: 1200, // ms
+        threshold: 300, // ms
     }
 
     function quadrupleHandler(event)
@@ -31,25 +31,18 @@
         {
             // Tri-click failed, took too long.
             clicks = 0;
-            start  = event.timeStamp;
         }
 
+        start  = event.timeStamp;
         // Increment counter, and do finish action.
         clicks += 1;
         if (clicks === 4)
         {
             clicks     = 0;
             start      = 0;
-            event.type = "quadrupleclick";
+            // event.type = "quadrupleclick";
 
-            // Let jQuery handle the triggering of "quadrupleclick" event handlers
-            if (jQuery.event.handle === undefined) {
-                jQuery.event.dispatch.apply(this, arguments);
-            }
-            else {
-                // for jQuery before 1.9
-                jQuery.event.handle.apply(this, arguments);
-            }
+            $(event.target).trigger("quadrupleclick");
         }
 
         // Update object data
@@ -88,7 +81,7 @@ function SelectText(element) {
     }
 }
 
-$(document).on('quadrupleclick', 'pre > code', function (event) {
+$(document).on('quadrupleclick', 'pre', function (event) {
   SelectText(this);
   event.preventDefault();
 });
