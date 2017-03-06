@@ -7,5 +7,5 @@ Redmine::Plugin.register :redmine_quadrupleclick_codeblock do
   name 'readmine quadrupleclick codeblock'
   author 'othree'
   description 'Quadrupleclick code block to select all code'
-  version '0.0.1'
+  version '1.0'
 end
